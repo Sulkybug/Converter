@@ -575,7 +575,11 @@ const Converter = ({ unit }) => {
             placeholder="0"
             className="entry1"
           />
-          <Select options={getMagnitudeOptions(unit)} onChange={handleChange} />
+          <Select
+            options={getMagnitudeOptions(unit)}
+            onChange={handleChange}
+            placeholder="Select..  ▼"
+          />
         </div>
         <div className="box2">
           <input
@@ -594,7 +598,7 @@ const Converter = ({ unit }) => {
                 ? ""
                 : { value: valueDrop2, label: valueDrop2 }
             }
-            placeholder="Select..."
+            placeholder="Select..  ▼"
             onChange={handleChange2}
           />
         </div>

@@ -51,8 +51,17 @@ input {
 }
 
 @media only screen and (max-width: 766px) {
+  #root {
+    margin-top: 150px;
+    padding: 1rem;
+  }
+  body {
+    height: 100%;
+  }
+
   .myBody {
     flex-direction: column;
+    width: 100vw;
   }
 
   .formula,
@@ -60,7 +69,7 @@ input {
   .entry2,
   .myBody,
   .unitBox {
-    font-size: 25px;
+    font-size: 29px;
   }
 
   .box1 {
