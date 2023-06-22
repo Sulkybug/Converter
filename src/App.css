@@ -1,0 +1,73 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  color-scheme: light dark;
+  text-align: center;
+}
+
+.myBody {
+  display: flex;
+  flex-direction: row;
+  width: 70vh;
+}
+
+.box1 {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.box2 {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.formula {
+  color: yellow;
+}
+
+.entry1 {
+  padding: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  color: rgb(130, 130, 224);
+}
+
+.entry2 {
+  padding: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  color: rgb(130, 224, 130);
+}
+
+@media only screen and (max-width: 766px) {
+  .myBody {
+    flex-direction: column;
+  }
+
+  .formula,
+  .entry1,
+  .entry2,
+  .myBody,
+  .unitBox {
+    font-size: 25px;
+  }
+
+  .box1 {
+    width: 100%;
+  }
+
+  .box2 {
+    width: 100%;
+  }
+}
