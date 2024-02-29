@@ -3,6 +3,9 @@ import Select from "react-select";
 import { optionTemperature } from "./magnitudes/optionTemperature";
 import { optionSpeed } from "./magnitudes/optionSpeed";
 import { optionLength } from "./magnitudes/optionLength";
+import { Temperature_formulas } from "./formulas/temperature/temperature_formulas";
+import { Speed_formulas } from "./formulas/speed/speed_formulas";
+import { Length_formulas } from "./formulas/length/length_formulas";
 
 const Converter = ({ unit }) => {
   const [input1, setInput1] = useState("");
@@ -13,333 +16,48 @@ const Converter = ({ unit }) => {
 
   const onInput1 = (e) => {
     const value = Number(e.currentTarget.value);
-    console.log(valueDrop1);
+    let converter = "";
+
+    if (unit == "Temperature") {
+      converter = new Temperature_formulas(value);
+    } else if (unit == "Speed") {
+      converter = new Speed_formulas(value);
+    } else if (unit == "Length") {
+      converter = new Length_formulas(value);
+    }
+
     setInput1(value);
-    setInput2(
-      valueDrop1 === "Celcius" && valueDrop2 === "Kelvin"
-        ? value + 273.15
-        : valueDrop1 === "Kelvin" && valueDrop2 === "Celcius"
-        ? value - 273.15
-        : valueDrop1 === "Celcius" && valueDrop2 === "Fahrenheit"
-        ? (value * (9 / 5) + 32).toFixed(2)
-        : valueDrop2 === "Celcius" && valueDrop1 === "Fahrenheit"
-        ? ((value - 32) * (5 / 9)).toFixed(2)
-        : valueDrop1 === "Kelvin" && valueDrop2 === "Fahrenheit"
-        ? ((value - 273.15) * (9 / 5) + 32).toFixed(2)
-        : valueDrop2 === "Kelvin" && valueDrop1 === "Fahrenheit"
-        ? ((value - 32) * (5 / 9) + 273.15).toFixed(2)
-        : valueDrop1 === "Kilometer/Hour" && valueDrop2 === "Meter/Second"
-        ? (value / 3.6).toFixed(2)
-        : valueDrop2 === "Kilometer/Hour" && valueDrop1 === "Meter/Second"
-        ? (value * 3.6).toFixed(2)
-        : valueDrop1 === "Kilometer/Hour" && valueDrop2 === "Knot"
-        ? (value / 1.852).toFixed(2)
-        : valueDrop2 === "Kilometer/Hour" && valueDrop1 === "Knot"
-        ? (value * 1.852).toFixed(2)
-        : valueDrop1 === "Kilometer/Hour" && valueDrop2 === "Mile/Hour"
-        ? (value / 1.609).toFixed(2)
-        : valueDrop2 === "Kilometer/Hour" && valueDrop1 === "Mile/Hour"
-        ? (value * 1.609).toFixed(2)
-        : valueDrop1 === "Meter/Second" && valueDrop2 === "Knot"
-        ? (value * 1.944).toFixed(2)
-        : valueDrop2 === "Meter/Second" && valueDrop1 === "Knot"
-        ? (value / 1.944).toFixed(2)
-        : valueDrop1 === "Meter/Second" && valueDrop2 === "Mile/Hour"
-        ? (value * 2.237).toFixed(2)
-        : valueDrop2 === "Meter/Second" && valueDrop1 === "Mile/Hour"
-        ? (value / 2.237).toFixed(2)
-        : valueDrop1 === "Knot" && valueDrop2 === "Mile/Hour"
-        ? (value * 1.151).toFixed(2)
-        : valueDrop2 === "Knot" && valueDrop1 === "Mile/Hour"
-        ? (value / 1.151).toFixed(2)
-        : valueDrop1 === "Kilometer" && valueDrop2 === "Meter"
-        ? value * 1000
-        : valueDrop2 === "Kilometer" && valueDrop1 === "Meter"
-        ? value / 1000
-        : valueDrop1 === "Kilometer" && valueDrop2 === "Centimeter"
-        ? value * 100000
-        : valueDrop2 === "Kilometer" && valueDrop1 === "Centimeter"
-        ? value / 100000
-        : valueDrop1 === "Kilometer" && valueDrop2 === "Milimeter"
-        ? value * 1000000
-        : valueDrop2 === "Kilometer" && valueDrop1 === "Milimeter"
-        ? value / 1000000
-        : valueDrop1 === "Kilometer" && valueDrop2 === "Mile"
-        ? (value / 1.609).toFixed(2)
-        : valueDrop2 === "Kilometer" && valueDrop1 === "Mile"
-        ? (value * 1.609).toFixed(2)
-        : valueDrop1 === "Kilometer" && valueDrop2 === "Foot"
-        ? value * 3281
-        : valueDrop2 === "Kilometer" && valueDrop1 === "Foot"
-        ? value / 3281
-        : valueDrop1 === "Kilometer" && valueDrop2 === "Inch"
-        ? value * 39370
-        : valueDrop2 === "Kilometer" && valueDrop1 === "Inch"
-        ? value / 39370
-        : valueDrop1 === "Kilometer" && valueDrop2 === "Yard"
-        ? (value * 1093.61).toFixed(2)
-        : valueDrop2 === "Kilometer" && valueDrop1 === "Yard"
-        ? (value / 1093.61).toFixed(4)
-        : valueDrop1 === "Meter" && valueDrop2 === "Centimeter"
-        ? value * 100
-        : valueDrop2 === "Meter" && valueDrop1 === "Centimeter"
-        ? value / 100
-        : valueDrop1 === "Meter" && valueDrop2 === "Milimeter"
-        ? value * 1000
-        : valueDrop2 === "Meter" && valueDrop1 === "Milimeter"
-        ? value / 1000
-        : valueDrop1 === "Meter" && valueDrop2 === "Mile"
-        ? (value / 1609).toFixed(3)
-        : valueDrop2 === "Meter" && valueDrop1 === "Mile"
-        ? value * 1609
-        : valueDrop1 === "Meter" && valueDrop2 === "Foot"
-        ? (value * 3.281).toFixed(2)
-        : valueDrop2 === "Meter" && valueDrop1 === "Foot"
-        ? (value / 3.281).toFixed(2)
-        : valueDrop1 === "Meter" && valueDrop2 === "Inch"
-        ? (value * 39.37).toFixed(2)
-        : valueDrop2 === "Meter" && valueDrop1 === "Inch"
-        ? (value / 39.37).toFixed(3)
-        : valueDrop1 === "Meter" && valueDrop2 === "Yard"
-        ? (value * 1.094).toFixed(2)
-        : valueDrop2 === "Meter" && valueDrop1 === "Yard"
-        ? (value / 1.094).toFixed(2)
-        : valueDrop1 === "Centimeter" && valueDrop2 === "Milimeter"
-        ? value * 10
-        : valueDrop2 === "Centimeter" && valueDrop1 === "Milimeter"
-        ? value / 10
-        : valueDrop1 === "Centimeter" && valueDrop2 === "Mile"
-        ? (value / 160900).toFixed(6)
-        : valueDrop2 === "Centimeter" && valueDrop1 === "Mile"
-        ? value * 160900
-        : valueDrop1 === "Centimeter" && valueDrop2 === "Foot"
-        ? (value / 30.48).toFixed(2)
-        : valueDrop2 === "Centimeter" && valueDrop1 === "Foot"
-        ? (value * 30.48).toFixed(2)
-        : valueDrop1 === "Centimeter" && valueDrop2 === "Inch"
-        ? (value / 2.54).toFixed(2)
-        : valueDrop2 === "Centimeter" && valueDrop1 === "Inch"
-        ? (value * 2.54).toFixed(2)
-        : valueDrop1 === "Centimeter" && valueDrop2 === "Yard"
-        ? (value / 91.44).toFixed(2)
-        : valueDrop2 === "Centimeter" && valueDrop1 === "Yard"
-        ? (value * 91.44).toFixed(2)
-        : valueDrop1 === "Milimeter" && valueDrop2 === "Mile"
-        ? value / 1.609e6
-        : valueDrop2 === "Milimeter" && valueDrop1 === "Mile"
-        ? value * 1.609e6
-        : valueDrop1 === "Milimeter" && valueDrop2 === "Foot"
-        ? (value / 304.8).toFixed(3)
-        : valueDrop2 === "Milimeter" && valueDrop1 === "Foot"
-        ? (value * 304.8).toFixed(2)
-        : valueDrop1 === "Milimeter" && valueDrop2 === "Inch"
-        ? (value / 25.4).toFixed(2)
-        : valueDrop2 === "Milimeter" && valueDrop1 === "Inch"
-        ? (value * 25.4).toFixed(2)
-        : valueDrop1 === "Milimeter" && valueDrop2 === "Yard"
-        ? (value / 914.4).toFixed(3)
-        : valueDrop2 === "Milimeter" && valueDrop1 === "Yard"
-        ? (value * 914.4).toFixed(2)
-        : valueDrop1 === "Mile" && valueDrop2 === "Foot"
-        ? value * 5280
-        : valueDrop2 === "Mile" && valueDrop1 === "Foot"
-        ? (value / 5280).toFixed(4)
-        : valueDrop1 === "Mile" && valueDrop2 === "Inch"
-        ? value * 63360
-        : valueDrop2 === "Mile" && valueDrop1 === "Inch"
-        ? (value / 63360).toFixed(5)
-        : valueDrop1 === "Mile" && valueDrop2 === "Yard"
-        ? value * 1760
-        : valueDrop2 === "Mile" && valueDrop1 === "Yard"
-        ? (value / 1760).toFixed(4)
-        : valueDrop1 === "Foot" && valueDrop2 === "Inch"
-        ? value * 12
-        : valueDrop2 === "Foot" && valueDrop1 === "Inch"
-        ? (value / 12).toFixed(2)
-        : valueDrop1 === "Foot" && valueDrop2 === "Yard"
-        ? (value / 3).toFixed(2)
-        : valueDrop2 === "Foot" && valueDrop1 === "Yard"
-        ? value * 3
-        : valueDrop1 === "Inch" && valueDrop2 === "Yard"
-        ? (value / 36).toFixed(2)
-        : valueDrop2 === "Inch" && valueDrop1 === "Yard"
-        ? value * 36
-        : ""
-    );
+    setInput2(converter.convert(valueDrop1, valueDrop2));
   };
 
   const onInput2 = (e) => {
     const value = Number(e.currentTarget.value);
-    console.log(valueDrop2);
+    let converter = "";
+
+    if (unit == "Temperature") {
+      converter = new Temperature_formulas(value);
+    } else if (unit == "Speed") {
+      converter = new Speed_formulas(value);
+    } else if (unit == "Length") {
+      converter = new Length_formulas(value);
+    }
+
     setInput2(value);
-    setInput1(
-      valueDrop1 === "Celcius" && valueDrop2 === "Kelvin"
-        ? value - 273.15
-        : valueDrop1 === "Kelvin" && valueDrop2 === "Celcius"
-        ? value + 273.15
-        : valueDrop1 === "Celcius" && valueDrop2 === "Fahrenheit"
-        ? ((value - 32) * (5 / 9)).toFixed(2)
-        : valueDrop2 === "Celcius" && valueDrop1 === "Fahrenheit"
-        ? (value * (9 / 5) + 32).toFixed(2)
-        : valueDrop1 === "Kelvin" && valueDrop2 === "Fahrenheit"
-        ? ((value - 32) * (5 / 9) + 273.15).toFixed(2)
-        : valueDrop2 === "Kelvin" && valueDrop1 === "Fahrenheit"
-        ? ((value - 273.15) * (9 / 5) + 32).toFixed(2)
-        : valueDrop1 === "Kilometer/Hour" && valueDrop2 === "Meter/Second"
-        ? (value * 3.6).toFixed(2)
-        : valueDrop2 === "Kilometer/Hour" && valueDrop1 === "Meter/Second"
-        ? (value / 3.6).toFixed(2)
-        : valueDrop1 === "Kilometer/Hour" && valueDrop2 === "Knot"
-        ? (value * 1.852).toFixed(2)
-        : valueDrop2 === "Kilometer/Hour" && valueDrop1 === "Knot"
-        ? (value / 1.852).toFixed(2)
-        : valueDrop1 === "Kilometer/Hour" && valueDrop2 === "Mile/Hour"
-        ? (value * 1.609).toFixed(2)
-        : valueDrop2 === "Kilometer/Hour" && valueDrop1 === "Mile/Hour"
-        ? (value / 1.609).toFixed(2)
-        : valueDrop1 === "Meter/Second" && valueDrop2 === "Knot"
-        ? (value / 1.944).toFixed(2)
-        : valueDrop2 === "Meter/Second" && valueDrop1 === "Knot"
-        ? (value * 1.944).toFixed(3)
-        : valueDrop1 === "Meter/Second" && valueDrop2 === "Mile/Hour"
-        ? (value / 2.237).toFixed(2)
-        : valueDrop2 === "Meter/Second" && valueDrop1 === "Mile/Hour"
-        ? (value * 2.237).toFixed(2)
-        : valueDrop1 === "Knot" && valueDrop2 === "Mile/Hour"
-        ? (value / 1.151).toFixed(2)
-        : valueDrop2 === "Knot" && valueDrop1 === "Mile/Hour"
-        ? (value * 1.151).toFixed(2)
-        : valueDrop1 === "Kilometer" && valueDrop2 === "Meter"
-        ? value / 1000
-        : valueDrop2 === "Kilometer" && valueDrop1 === "Meter"
-        ? value * 1000
-        : valueDrop1 === "Kilometer" && valueDrop2 === "Centimeter"
-        ? value / 100000
-        : valueDrop2 === "Kilometer" && valueDrop1 === "Centimeter"
-        ? value * 100000
-        : valueDrop1 === "Kilometer" && valueDrop2 === "Milimeter"
-        ? value / 1000000
-        : valueDrop2 === "Kilometer" && valueDrop1 === "Milimeter"
-        ? value * 1000000
-        : valueDrop1 === "Kilometer" && valueDrop2 === "Mile"
-        ? (value * 1.609).toFixed(2)
-        : valueDrop2 === "Kilometer" && valueDrop1 === "Mile"
-        ? (value / 1.609).toFixed(2)
-        : valueDrop1 === "Kilometer" && valueDrop2 === "Foot"
-        ? value / 3281
-        : valueDrop2 === "Kilometer" && valueDrop1 === "Foot"
-        ? value * 3281
-        : valueDrop1 === "Kilometer" && valueDrop2 === "Inch"
-        ? value / 39370
-        : valueDrop2 === "Kilometer" && valueDrop1 === "Inch"
-        ? value * 39370
-        : valueDrop1 === "Kilometer" && valueDrop2 === "Yard"
-        ? (value / 1093.61).toFixed(3)
-        : valueDrop2 === "Kilometer" && valueDrop1 === "Yard"
-        ? (value * 1093.61).toFixed(2)
-        : valueDrop1 === "Meter" && valueDrop2 === "Centimeter"
-        ? value / 100
-        : valueDrop2 === "Meter" && valueDrop1 === "Centimeter"
-        ? value * 100
-        : valueDrop1 === "Meter" && valueDrop2 === "Milimeter"
-        ? value / 1000
-        : valueDrop2 === "Meter" && valueDrop1 === "Milimeter"
-        ? value * 1000
-        : valueDrop1 === "Meter" && valueDrop2 === "Mile"
-        ? value * 1609
-        : valueDrop2 === "Meter" && valueDrop1 === "Mile"
-        ? (value / 1609).toFixed(3)
-        : valueDrop1 === "Meter" && valueDrop2 === "Foot"
-        ? (value / 3.281).toFixed(2)
-        : valueDrop2 === "Meter" && valueDrop1 === "Foot"
-        ? (value * 3.281).toFixed(2)
-        : valueDrop1 === "Meter" && valueDrop2 === "Inch"
-        ? (value / 39.37).toFixed(2)
-        : valueDrop2 === "Meter" && valueDrop1 === "Inch"
-        ? (value * 39.37).toFixed(3)
-        : valueDrop1 === "Meter" && valueDrop2 === "Yard"
-        ? (value / 1.094).toFixed(2)
-        : valueDrop2 === "Meter" && valueDrop1 === "Yard"
-        ? (value * 1.094).toFixed(2)
-        : valueDrop1 === "Centimeter" && valueDrop2 === "Milimeter"
-        ? value / 10
-        : valueDrop2 === "Centimeter" && valueDrop1 === "Milimeter"
-        ? value * 10
-        : valueDrop1 === "Centimeter" && valueDrop2 === "Mile"
-        ? value * 160900
-        : valueDrop2 === "Centimeter" && valueDrop1 === "Mile"
-        ? (value / 160900).toFixed(6)
-        : valueDrop1 === "Centimeter" && valueDrop2 === "Foot"
-        ? (value * 30.48).toFixed(2)
-        : valueDrop2 === "Centimeter" && valueDrop1 === "Foot"
-        ? (value / 30.48).toFixed(2)
-        : valueDrop1 === "Centimeter" && valueDrop2 === "Inch"
-        ? (value * 2.54).toFixed(2)
-        : valueDrop2 === "Centimeter" && valueDrop1 === "Inch"
-        ? (value / 2.54).toFixed(2)
-        : valueDrop1 === "Centimeter" && valueDrop2 === "Yard"
-        ? (value * 91.44).toFixed(2)
-        : valueDrop2 === "Centimeter" && valueDrop1 === "Yard"
-        ? (value / 91.44).toFixed(2)
-        : valueDrop1 === "Milimeter" && valueDrop2 === "Mile"
-        ? value * 1.609e6
-        : valueDrop2 === "Milimeter" && valueDrop1 === "Mile"
-        ? value / 1.609e6
-        : valueDrop1 === "Milimeter" && valueDrop2 === "Foot"
-        ? (value * 304.8).toFixed(2)
-        : valueDrop2 === "Milimeter" && valueDrop1 === "Foot"
-        ? (value / 304.8).toFixed(3)
-        : valueDrop1 === "Milimeter" && valueDrop2 === "Inch"
-        ? (value * 25.4).toFixed(2)
-        : valueDrop2 === "Milimeter" && valueDrop1 === "Inch"
-        ? (value / 25.4).toFixed(3)
-        : valueDrop1 === "Milimeter" && valueDrop2 === "Yard"
-        ? (value * 914.4).toFixed(2)
-        : valueDrop2 === "Milimeter" && valueDrop1 === "Yard"
-        ? (value / 914.4).toFixed(2)
-        : valueDrop1 === "Mile" && valueDrop2 === "Foot"
-        ? (value / 5280).toFixed(4)
-        : valueDrop2 === "Mile" && valueDrop1 === "Foot"
-        ? value * 5280
-        : valueDrop1 === "Mile" && valueDrop2 === "Inch"
-        ? (value / 63360).toFixed(5)
-        : valueDrop2 === "Mile" && valueDrop1 === "Inch"
-        ? value * 63360
-        : valueDrop1 === "Mile" && valueDrop2 === "Yard"
-        ? (value / 1760).toFixed(4)
-        : valueDrop2 === "Mile" && valueDrop1 === "Yard"
-        ? value * 1760
-        : valueDrop1 === "Foot" && valueDrop2 === "Inch"
-        ? (value / 12).toFixed(2)
-        : valueDrop2 === "Foot" && valueDrop1 === "Inch"
-        ? value * 12
-        : valueDrop1 === "Foot" && valueDrop2 === "Yard"
-        ? value * 3
-        : valueDrop2 === "Foot" && valueDrop1 === "Yard"
-        ? (value / 3).toFixed(2)
-        : valueDrop1 === "Inch" && valueDrop2 === "Yard"
-        ? value * 36
-        : valueDrop2 === "Inch" && valueDrop1 === "Yard"
-        ? (value / 36).toFixed(2)
-        : ""
-    );
+    setInput1(converter.convert(valueDrop2, valueDrop1));
   };
 
   const handleChange = (e) => {
-    console.log(e.value);
     CheckValSetVal(e, setvalueDrop1);
-    setInput1("0");
-    setInput2("0");
-
+    setInput1("");
+    setInput2("");
     formulaSetFunction(e.value, valueDrop2);
   };
 
   const handleChange2 = (e) => {
-    console.log(e.value);
     CheckValSetVal(e, setvalueDrop2);
-    setInput1("0");
-    setInput2("0");
 
+    setInput1("");
+    setInput2("");
     formulaSetFunction(valueDrop1, e.value);
   };
 
