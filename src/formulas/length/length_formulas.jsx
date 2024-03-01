@@ -121,4 +121,123 @@ export class Length_formulas {
         return "";
     }
   };
+
+  formulas = (drop1, drop2) => {
+    switch (`${drop1}-${drop2}`) {
+      case "Kilometer-Meter":
+        return "Km × 1000 = Mt";
+      case "Meter-Kilometer":
+        return "Mt / 1000 = Km";
+      case "Kilometer-Centimeter":
+        return "Km × 100000 = Cm";
+      case "Centimeter-Kilometer":
+        return "Cm / 100000 = Km";
+      case "Kilometer-Milimeter":
+        return "Km × 1e+6 = Ml";
+      case "Milimeter-Kilometer":
+        return "Ml / 1e+6 = Km";
+      case "Kilometer-Mile":
+        return "Km / 1.609 = Mi";
+      case "Mile-Kilometer":
+        return "Mi × 1.609 = Km";
+      case "Kilometer-Foot":
+        return "Km × 3281 = Ft";
+      case "Foot-Kilometer":
+        return "Ft / 3281 = Km";
+      case "Kilometer-Inch":
+        return "Km × 39370 = In";
+      case "Inch-Kilometer":
+        return "In / 39370 = Km";
+      case "Kilometer-Yard":
+        return "Km × 1093.61 = Yd";
+      case "Yard-Kilometer":
+        return "Yd / 1093.61 = Km";
+      case "Meter-Centimeter":
+        return "Mt × 100 = Cm";
+      case "Centimeter-Meter":
+        return "Cm / 100 = Mt";
+      case "Meter-Milimeter":
+        return "Mt × 1000 = Ml";
+      case "Milimeter-Meter":
+        return "Ml / 1000 = Mt";
+      case "Meter-Mile":
+        return "Mt / 1609 = Mi";
+      case "Mile-Meter":
+        return "Mi × 1609 = Mt";
+      case "Meter-Foot":
+        return "Mt × 3.281 = Ft";
+      case "Foot-Meter":
+        return "Ft / 3.281 = Mt";
+      case "Meter-Inch":
+        return "Mt × 39.37 = In";
+      case "Inch-Meter":
+        return "In / 39.37 = Mt";
+      case "Meter-Yard":
+        return "Mt × 1.094 = Yd";
+      case "Yard-Meter":
+        return "Yd / 1.094 = Mt";
+      case "Centimeter-Milimeter":
+        return "Cm × 10 = Ml";
+      case "Milimeter-Centimeter":
+        return "Ml / 10 = Cm";
+      case "Centimeter-Mile":
+        return "Cm / 160900 = Mi";
+      case "Mile-Centimeter":
+        return "Mi × 160900 = Cm";
+      case "Centimeter-Foot":
+        return "Cm / 30.48 = Ft";
+      case "Foot-Centimeter":
+        return "Ft × 30.48 = Cm";
+      case "Centimeter-Inch":
+        return "Cm / 2.54 = In";
+      case "Inch-Centimeter":
+        return "In × 2.54 = Cm";
+      case "Centimeter-Yard":
+        return "Cm / 91.44 = Yd";
+      case "Yard-Centimeter":
+        return "Yd × 91.44 = Cm";
+      case "Milimeter-Mile":
+        return "Ml / 1.609e+6 = Mi";
+      case "Mile-Milimeter":
+        return "Mi × 1.609e+6 = Ml";
+      case "Milimeter-Foot":
+        return "Ml / 304.8 = Ft";
+      case "Foot-Milimeter":
+        return "Ft × 304.8 = Ml";
+      case "Milimeter-Inch":
+        return "Ml / 25.4 = In";
+      case "Inch-Milimeter":
+        return "In × 25.4 = Ml";
+      case "Milimeter-Yard":
+        return "Ml / 914.4 = Yd";
+      case "Yard-Milimeter":
+        return "Yd × 914.4 = Ml";
+      case "Mile-Foot":
+        return "Mi × 5280 = Ft";
+      case "Foot-Mile":
+        return "Ft / 5280 = Mi";
+      case "Mile-Inch":
+        return "Mi × 63360 = In";
+      case "Inch-Mile":
+        return "In / 63360 = Mi";
+      case "Mile-Yard":
+        return "Mi × 1760 = Yd";
+      case "Yard-Mile":
+        return "Yd / 1760 = Mi";
+      case "Foot-Inch":
+        return "Ft × 12 = In";
+      case "Inch-Foot":
+        return "In / 12 = Ft";
+      case "Foot-Yard":
+        return "Ft / 3 = Yd";
+      case "Yard-Foot":
+        return "Yd × 3 = Ft";
+      case "Inch-Yard":
+        return "In / 36 = Yd";
+      case "Yard-Inch":
+        return "Yd × 36 = In";
+      default:
+        return "";
+    }
+  };
 }

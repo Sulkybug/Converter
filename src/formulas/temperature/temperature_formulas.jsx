@@ -21,4 +21,23 @@ export class Temperature_formulas {
         return "";
     }
   };
+
+  formulas = (drop1, drop2) => {
+    switch (`${drop1}-${drop2}`) {
+      case "Celcius-Kelvin":
+        return "°C + 273.15 = K";
+      case "Kelvin-Celcius":
+        return "K - 273.15 = °C";
+      case "Celcius-Fahrenheit":
+        return "(°C × (9/5)) + 32 = °F";
+      case "Fahrenheit-Celcius":
+        return "((°F - 32) × (5/9)) = °C";
+      case "Kelvin-Fahrenheit":
+        return "((K - 273.15) × (9/5) + 32) = °F";
+      case "Fahrenheit-Kelvin":
+        return "((°F - 32) × (5/9) + 273.15) = K";
+      default:
+        return "";
+    }
+  };
 }
