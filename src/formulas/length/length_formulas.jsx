@@ -118,7 +118,7 @@ export class Length_formulas {
       case "Yard-Inch":
         return this.value * 36;
       default:
-        return "";
+        return "0";
     }
   };
 

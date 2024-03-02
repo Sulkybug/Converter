@@ -18,7 +18,7 @@ export class Temperature_formulas {
       case "Fahrenheit-Kelvin":
         return ((this.value - 32) * (5 / 9) + 273.15).toFixed(2);
       default:
-        return "";
+        return "0";
     }
   };
 

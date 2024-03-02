@@ -30,7 +30,7 @@ export class Speed_formulas {
       case "Mile/Hour-Knot":
         return (this.value / 1.151).toFixed(3);
       default:
-        return "";
+        return "0";
     }
   };
 

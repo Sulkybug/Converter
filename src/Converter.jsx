@@ -30,8 +30,11 @@ const Converter = ({ unit }) => {
 
   const selectHandleChangeOne = (e) => {
     setvalueDrop1(e.value);
-    setInput1("");
-    setInput2("");
+
+    if (input1 != "" && input2 != "") {
+      let converter = validateUnit(input1);
+      setInput2(converter.convert(e.value, valueDrop2));
+    }
 
     let formulaDescription = validateUnit();
     setFormula(formulaDescription.formulas(e.value, valueDrop2));
@@ -39,8 +42,11 @@ const Converter = ({ unit }) => {
 
   const selectHandleChangeTwo = (e) => {
     setvalueDrop2(e.value);
-    setInput1("");
-    setInput2("");
+
+    if (input1 != "" && input2 != "") {
+      let converter = validateUnit(input1);
+      setInput2(converter.convert(valueDrop1, e.value));
+    }
 
     let formulaDescription = validateUnit();
     setFormula(formulaDescription.formulas(valueDrop1, e.value));
@@ -94,7 +100,7 @@ const Converter = ({ unit }) => {
           <input
             type="number"
             onChange={onInput1}
-            value={valueDrop1 === valueDrop2 ? "" : input1}
+            value={input1}
             placeholder="0"
             className="entry1"
           />
@@ -108,7 +114,7 @@ const Converter = ({ unit }) => {
           <input
             type="number"
             onChange={onInput2}
-            value={valueDrop1 === valueDrop2 ? "" : input2}
+            value={input2}
             placeholder="0"
             className="entry2"
           />
