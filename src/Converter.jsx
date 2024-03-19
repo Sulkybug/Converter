@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import Select from "react-select";
 import { optionTemperature } from "./magnitudes/optionTemperature";
 import { optionSpeed } from "./magnitudes/optionSpeed";
@@ -93,6 +93,14 @@ const Converter = ({ unit }) => {
     }
   }, []);
 
+  useEffect(() => {
+    setInput1("");
+    setInput2("");
+    setvalueDrop1("");
+    setvalueDrop2("");
+    setFormula("");
+  }, [unit]);
+
   return (
     <div>
       <div className="myBody">
@@ -108,6 +116,11 @@ const Converter = ({ unit }) => {
             options={getMagnitudeOptions(unit)}
             onChange={selectHandleChangeOne}
             placeholder="Select..  ▼"
+            value={
+              valueDrop1 == "" && valueDrop2 == ""
+                ? "Select..  ▼"
+                : { value: valueDrop1, label: valueDrop1 }
+            }
           />
         </div>
         <div className="box2">
