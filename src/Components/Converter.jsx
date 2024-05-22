@@ -1,11 +1,11 @@
 import React, { useState, useCallback, useEffect } from "react";
 import Select from "react-select";
-import { optionTemperature } from "./magnitudes/optionTemperature";
-import { optionSpeed } from "./magnitudes/optionSpeed";
-import { optionLength } from "./magnitudes/optionLength";
-import { Temperature_formulas } from "./formulas/temperature/temperature_formulas";
-import { Speed_formulas } from "./formulas/speed/speed_formulas";
-import { Length_formulas } from "./formulas/length/length_formulas";
+import { optionTemperature } from "../magnitudes/optionTemperature";
+import { optionSpeed } from "../magnitudes/optionSpeed";
+import { optionLength } from "../magnitudes/optionLength";
+import { Temperature_formulas } from "../formulas/temperature/temperature_formulas";
+import { Speed_formulas } from "../formulas/speed/speed_formulas";
+import { Length_formulas } from "../formulas/length/length_formulas";
 
 const Converter = ({ unit }) => {
   const [input1, setInput1] = useState("");
