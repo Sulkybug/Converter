@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { optionTemperature } from "../magnitudes/optionTemperature";
 import { optionSpeed } from "../magnitudes/optionSpeed";
@@ -80,7 +80,7 @@ const Converter = ({ unit }) => {
     return result;
   }
 
-  const getMagnitudeOptions = useCallback((unit) => {
+  const getMagnitudeOptions = (unit) => {
     switch (unit) {
       case "Temperature":
         return optionTemperature;
@@ -91,7 +91,7 @@ const Converter = ({ unit }) => {
       default:
         return "";
     }
-  }, []);
+  };
 
   useEffect(() => {
     setInput1("");
