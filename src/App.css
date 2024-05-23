@@ -61,6 +61,7 @@ input {
   }
   #root {
     margin: 5px;
+    align-items: flex-start;
   }
   body {
     scale: 0.7;
