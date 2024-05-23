@@ -1,3 +1,10 @@
+html {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+}
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -51,12 +58,15 @@ input {
 }
 
 @media only screen and (max-width: 766px) {
+  html {
+    align-items: flex-end;
+  }
   #root {
     margin-top: 150px;
     width: 100vw;
   }
   body {
-    height: 100%;
+    scale: 0.7;
   }
 
   .myBody {
