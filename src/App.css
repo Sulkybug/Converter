@@ -62,8 +62,7 @@ input {
     align-items: flex-end;
   }
   #root {
-    margin-top: 150px;
-    width: 100vw;
+    margin: 5px;
   }
   body {
     scale: 0.7;
